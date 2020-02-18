@@ -209,6 +209,7 @@
               "projects/Project/src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "projects/Project/src/styles.css"
             ],
             "scripts": []
@@ -236,6 +237,126 @@
           "configurations": {
             "production": {
               "devServerTarget": "Project:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "cmp-databinding-start": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/cmp-databinding-start",
+      "sourceRoot": "projects/cmp-databinding-start/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/cmp-databinding-start",
+            "index": "projects/cmp-databinding-start/src/index.html",
+            "main": "projects/cmp-databinding-start/src/main.ts",
+            "polyfills": "projects/cmp-databinding-start/src/polyfills.ts",
+            "tsConfig": "projects/cmp-databinding-start/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/cmp-databinding-start/src/favicon.ico",
+              "projects/cmp-databinding-start/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/cmp-databinding-start/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/cmp-databinding-start/src/environments/environment.ts",
+                  "with": "projects/cmp-databinding-start/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "cmp-databinding-start:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "cmp-databinding-start:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "cmp-databinding-start:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/cmp-databinding-start/src/test.ts",
+            "polyfills": "projects/cmp-databinding-start/src/polyfills.ts",
+            "tsConfig": "projects/cmp-databinding-start/tsconfig.spec.json",
+            "karmaConfig": "projects/cmp-databinding-start/karma.conf.js",
+            "assets": [
+              "projects/cmp-databinding-start/src/favicon.ico",
+              "projects/cmp-databinding-start/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/cmp-databinding-start/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/cmp-databinding-start/tsconfig.app.json",
+              "projects/cmp-databinding-start/tsconfig.spec.json",
+              "projects/cmp-databinding-start/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/cmp-databinding-start/e2e/protractor.conf.js",
+            "devServerTarget": "cmp-databinding-start:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "cmp-databinding-start:serve:production"
             }
           }
         }
